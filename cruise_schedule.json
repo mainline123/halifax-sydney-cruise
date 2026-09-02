@@ -1,14 +1,356 @@
 [
   {
-    "date": "Today",
-    "ship": "Queen Mary 2",
+    "date": "Sep 01",
+    "ship": "Zuiderdam",
+    "port": "Halifax",
+    "status": "07:43 - 16:57"
+  },
+  {
+    "date": "Sep 01",
+    "ship": "Sapphire Princess",
+    "port": "Sydney",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 02",
+    "ship": "Celebrity Silhouette",
+    "port": "Halifax",
+    "status": "06:30 - 17:00"
+  },
+  {
+    "date": "Sep 02",
+    "ship": "Seven Seas Splendor",
+    "port": "Halifax",
+    "status": "09:30 - 18:00"
+  },
+  {
+    "date": "Sep 02",
+    "ship": "Vision of the Seas",
+    "port": "Sydney",
+    "status": "10:25 - 19:00"
+  },
+  {
+    "date": "Sep 03",
+    "ship": "Norwegian Jewel",
+    "port": "Halifax",
+    "status": "06:00 - 13:00"
+  },
+  {
+    "date": "Sep 03",
+    "ship": "Norwegian Escape",
+    "port": "Sydney",
+    "status": "09:45 - 22:00"
+  },
+  {
+    "date": "Sep 04",
+    "ship": "AidaDiva",
+    "port": "Halifax",
+    "status": "07:30 - 16:00"
+  },
+  {
+    "date": "Sep 04",
+    "ship": "Norwegian Breakaway",
+    "port": "Sydney",
+    "status": "10:00 - 20:00"
+  },
+  {
+    "date": "Sep 05",
+    "ship": "Viking Mars",
+    "port": "Halifax",
+    "status": "08:00 - 17:00"
+  },
+  {
+    "date": "Sep 05",
+    "ship": "Mein Schiff 1",
+    "port": "Sydney",
+    "status": "09:00 - 19:30"
+  },
+  {
+    "date": "Sep 07",
+    "ship": "Sapphire Princess",
+    "port": "Sydney",
+    "status": "07:00 - 16:00"
+  },
+  {
+    "date": "Sep 07",
+    "ship": "Zuiderdam",
+    "port": "Halifax",
+    "status": "10:00 - 18:00"
+  },
+  {
+    "date": "Sep 08",
+    "ship": "Seabourn Ovation",
     "port": "Halifax",
     "status": "08:00 - 18:00"
   },
   {
-    "date": "Today",
-    "ship": "Caribbean Princess",
+    "date": "Sep 08",
+    "ship": "Norwegian Escape",
     "port": "Sydney",
+    "status": "09:25 - 17:30"
+  },
+  {
+    "date": "Sep 08",
+    "ship": "Celebrity Silhouette",
+    "port": "Halifax",
+    "status": "12:30 - 20:00"
+  },
+  {
+    "date": "Sep 09",
+    "ship": "Carnival Sunshine",
+    "port": "Halifax",
+    "status": "10:00 - 18:00"
+  },
+  {
+    "date": "Sep 09",
+    "ship": "Seven Seas Splendor",
+    "port": "Sydney",
+    "status": "11:30 - 19:30"
+  },
+  {
+    "date": "Sep 10",
+    "ship": "Scenic Eclipse",
+    "port": "Sydney",
+    "status": "08:00 - 23:59"
+  },
+  {
+    "date": "Sep 10",
+    "ship": "Norwegian Jewel",
+    "port": "Halifax",
+    "status": "10:00 - 19:00"
+  },
+  {
+    "date": "Sep 10",
+    "ship": "Norwegian Breakaway",
+    "port": "Sydney",
+    "status": "10:30 - 18:00"
+  },
+  {
+    "date": "Sep 12",
+    "ship": "Star Pride",
+    "port": "Sydney",
+    "status": "08:00 - 23:00"
+  },
+  {
+    "date": "Sep 13",
+    "ship": "Mein Schiff 1",
+    "port": "Sydney",
+    "status": "08:30 - 18:30"
+  },
+  {
+    "date": "Sep 14",
+    "ship": "Norwegian Escape",
+    "port": "Sydney",
+    "status": "07:00 - 14:00"
+  },
+  {
+    "date": "Sep 14",
+    "ship": "AidaDiva",
+    "port": "Halifax",
+    "status": "10:00 - 16:00"
+  },
+  {
+    "date": "Sep 16",
+    "ship": "Vista",
+    "port": "Halifax",
+    "status": "08:00 - 16:00"
+  },
+  {
+    "date": "Sep 16",
+    "ship": "Volendam",
+    "port": "Halifax",
+    "status": "09:55 - 18:00"
+  },
+  {
+    "date": "Sep 16",
+    "ship": "Vision of the Seas",
+    "port": "Sydney",
+    "status": "10:30 - 19:00"
+  },
+  {
+    "date": "Sep 16",
+    "ship": "Scenic Eclipse",
+    "port": "Sydney",
+    "status": "11:30 - 19:00"
+  },
+  {
+    "date": "Sep 17",
+    "ship": "Zuiderdam",
+    "port": "Halifax",
+    "status": "08:00 - 16:00"
+  },
+  {
+    "date": "Sep 17",
+    "ship": "Valiant Lady",
+    "port": "Sydney",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 18",
+    "ship": "Star Pride",
+    "port": "Sydney",
+    "status": "08:00 - 16:00"
+  },
+  {
+    "date": "Sep 18",
+    "ship": "Seabourn Ovation",
+    "port": "Halifax",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 18",
+    "ship": "Norwegian Breakaway",
+    "port": "Sydney",
+    "status": "10:00 - 20:00"
+  },
+  {
+    "date": "Sep 19",
+    "ship": "Hanseatic Inspiration",
+    "port": "Sydney",
+    "status": "07:00 - 23:00"
+  },
+  {
+    "date": "Sep 19",
+    "ship": "Viking Mars",
+    "port": "Sydney",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 19",
+    "ship": "Sapphire Princess",
+    "port": "Halifax",
+    "status": "08:55 - 18:00"
+  },
+  {
+    "date": "Sep 19",
+    "ship": "Celebrity Silhouette",
+    "port": "Halifax",
+    "status": "10:30 - 18:00"
+  },
+  {
+    "date": "Sep 20",
+    "ship": "Amera",
+    "port": "Sydney",
+    "status": "08:00 - 20:00"
+  },
+  {
+    "date": "Sep 20",
+    "ship": "Zuiderdam",
+    "port": "Halifax",
+    "status": "14:00 - 22:00"
+  },
+  {
+    "date": "Sep 21",
+    "ship": "Zuiderdam",
+    "port": "Halifax",
+    "status": "Arrival / 18:00"
+  },
+  {
+    "date": "Sep 21",
+    "ship": "Norwegian Jewel",
+    "port": "Halifax",
     "status": "09:00 - 17:00"
+  },
+  {
+    "date": "Sep 21",
+    "ship": "Volendam",
+    "port": "Halifax",
+    "status": "09:55 - 18:00"
+  },
+  {
+    "date": "Sep 22",
+    "ship": "Independence of the Seas",
+    "port": "Sydney",
+    "status": "06:30 - 16:00"
+  },
+  {
+    "date": "Sep 23",
+    "ship": "Carnival Sunshine",
+    "port": "Halifax",
+    "status": "10:00 - 18:00"
+  },
+  {
+    "date": "Sep 24",
+    "ship": "Arcadia",
+    "port": "Halifax",
+    "status": "08:00 - 17:00"
+  },
+  {
+    "date": "Sep 24",
+    "ship": "Norwegian Escape",
+    "port": "Sydney",
+    "status": "09:00 - 22:00"
+  },
+  {
+    "date": "Sep 25",
+    "ship": "Valiant Lady",
+    "port": "Halifax",
+    "status": "07:55 - 18:00"
+  },
+  {
+    "date": "Sep 25",
+    "ship": "Seven Seas Splendor",
+    "port": "Halifax",
+    "status": "09:00 - 16:30"
+  },
+  {
+    "date": "Sep 25",
+    "ship": "Norwegian Breakaway",
+    "port": "Sydney",
+    "status": "10:00 - 20:00"
+  },
+  {
+    "date": "Sep 26",
+    "ship": "Silver Shadow",
+    "port": "Sydney",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 27",
+    "ship": "Crystal Symphony",
+    "port": "Sydney",
+    "status": "08:00 - 17:00"
+  },
+  {
+    "date": "Sep 27",
+    "ship": "Sapphire Princess",
+    "port": "Halifax",
+    "status": "08:00 - 17:00"
+  },
+  {
+    "date": "Sep 28",
+    "ship": "Norwegian Escape",
+    "port": "Sydney",
+    "status": "07:00 - 16:00"
+  },
+  {
+    "date": "Sep 29",
+    "ship": "Viking Mars",
+    "port": "Halifax",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Sep 29",
+    "ship": "Scenic Eclipse",
+    "port": "Sydney",
+    "status": "09:30 - 23:00"
+  },
+  {
+    "date": "Sep 30",
+    "ship": "SH Vega",
+    "port": "Sydney",
+    "status": "08:00 - 14:00"
+  },
+  {
+    "date": "Sep 30",
+    "ship": "Celebrity Silhouette",
+    "port": "Halifax",
+    "status": "10:30 - 18:00"
+  },
+  {
+    "date": "Sep 30",
+    "ship": "Vision of the Seas",
+    "port": "Sydney",
+    "status": "10:30 - 19:00"
   }
 ]
