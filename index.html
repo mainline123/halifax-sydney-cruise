@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nova Scotia Cruise Arrivals</title>
+  <title>Nova Scotia Cruise Schedule - Halifax & Sydney</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html, body {
@@ -11,8 +11,7 @@
       height: 100%;
       overflow: hidden;
       font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(rgba(8, 13, 26, 0.88), rgba(8, 13, 26, 0.88)), url('Cruise-Main-Page.png') no-repeat center center fixed;
-      background-size: cover;
+      background: #060a14;
       color: #ffffff;
     }
     .screen {
@@ -20,106 +19,180 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 35px;
+      padding: 20px 30px;
+      gap: 20px;
     }
-    .header {
-      border-bottom: 3px solid rgba(26, 35, 58, 0.8);
-      padding-bottom: 20px;
-      margin-bottom: 25px;
+    
+    /* Top Header Bar */
+    .main-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom: 2px solid #1a2744;
+      padding-bottom: 12px;
     }
-    .header h1 {
+    .main-header h1 {
       color: #d4af37;
-      font-size: 38px;
-      font-weight: bold;
+      font-size: 32px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
     }
     .datetime {
       color: #00bfff;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: bold;
-      text-align: right;
-      min-width: 300px;
     }
-    .table-container {
+
+    /* Container for the two port sections */
+    .ports-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       flex-grow: 1;
       overflow: hidden;
+    }
+
+    .port-section {
+      display: flex;
+      background: #0d152a;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #1a2744;
+      flex: 1;
+      max-height: calc(50% - 10px);
+    }
+
+    /* Left Branding Sidebar */
+    .port-sidebar {
+      width: 260px;
+      background: linear-gradient(135deg, #0b1836 0%, #060f22 100%);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 2px solid #1a2744;
+      flex-shrink: 0;
+    }
+    .port-sidebar h2 {
+      color: #ffffff;
+      font-size: 28px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+    }
+    .port-sidebar p {
+      color: #8ab4f8;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    /* Right Table Area */
+    .table-container {
+      flex-grow: 1;
+      overflow-y: auto;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      background: rgba(18, 25, 44, 0.9);
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
     th, td {
-      padding: 20px 22px;
+      padding: 12px 18px;
       text-align: left;
     }
     th {
-      background-color: rgba(24, 34, 60, 0.95);
+      background-color: #121d36;
       color: #00bfff;
-      font-size: 22px;
+      font-size: 16px;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-bottom: 2px solid #1a233a;
+      letter-spacing: 1px;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      border-bottom: 2px solid #1a2744;
     }
     td {
-      font-size: 24px;
-      border-bottom: 1px solid rgba(26, 35, 58, 0.6);
+      font-size: 18px;
+      border-bottom: 1px solid rgba(26, 39, 68, 0.5);
     }
-    tr:last-child td { border-bottom: none; }
     tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
-    .port-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 20px;
-      font-weight: bold;
-      background: #1e2d4a;
-      color: #8ab4f8;
-    }
+    
     .status-badge {
       display: inline-block;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 18px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 14px;
       font-weight: bold;
-      text-transform: uppercase;
     }
-    .status-inport { background: #137333; color: #ceead6; }
-    .status-enroute { background: #1f3864; color: #8ab4f8; }
-    .status-departed { background: #810e15; color: #fad2d3; }
     .status-time { background: #202124; color: #bdc1c6; }
+    .empty-msg {
+      text-align: center;
+      padding: 30px;
+      color: #8ab4f8;
+      font-style: italic;
+      font-size: 18px;
+    }
   </style>
 </head>
 <body>
 
   <div class="screen">
-    <div class="header">
-      <h1>Nova Scotia Cruise Arrivals</h1>
+    <!-- Header -->
+    <div class="main-header">
+      <h1>Port of Nova Scotia — Cruise Schedule</h1>
       <div id="live-datetime" class="datetime">Loading...</div>
     </div>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Vessel Name</th>
-            <th>Port</th>
-            <th>Passengers</th>
-            <th>Status / Hours</th>
-          </tr>
-        </thead>
-        <tbody id="schedule-body">
-          <!-- Data rows injected here -->
-        </tbody>
-      </table>
+    <!-- Halifax & Sydney Sections -->
+    <div class="ports-wrapper">
+      
+      <!-- HALIFAX SECTION -->
+      <div class="port-section">
+        <div class="port-sidebar">
+          <h2>Halifax</h2>
+          <p>Gateway to Nova Scotia. Upcoming arrivals and departures.</p>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Ship Name</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Passengers</th>
+              </tr>
+            </thead>
+            <tbody id="halifax-tbody">
+              <!-- Injected via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SYDNEY SECTION -->
+      <div class="port-section">
+        <div class="port-sidebar">
+          <h2>Sydney</h2>
+          <p>Explore Cape Breton Island port schedule.</p>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Ship Name</th>
+                <th>Arrival</th>
+                <th>Departure</th>
+                <th>Passengers</th>
+              </tr>
+            </thead>
+            <tbody id="sydney-tbody">
+              <!-- Injected via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -134,94 +207,53 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    function parseTime(timeStr) {
-      const parts = timeStr.split(':');
-      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
-    }
-
-    function getDynamicStatus(itemDateStr, statusStr) {
-      if (!statusStr.includes('-')) {
-        return `<span class="status-badge status-time">${statusStr}</span>`;
-      }
-
-      const times = statusStr.split('-').map(t => t.trim());
-      if (times.length !== 2 || !times[0].includes(':') || !times[1].includes(':')) {
-        return `<span class="status-badge status-time">${statusStr}</span>`;
-      }
-
-      const now = new Date();
-      const itemDate = new Date(`${itemDateStr} 2026`);
-      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const targetDate = new Date(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate());
-
-      const currentTimeMins = now.getHours() * 60 + now.getMinutes();
-      const arrivalMins = parseTime(times[0]);
-      const departureMins = parseTime(times[1]);
-
-      let badgeClass = "status-time";
-      let label = statusStr;
-
-      if (targetDate > todayDate) {
-        badgeClass = "status-enroute";
-        label = `En Route (${statusStr})`;
-      } else if (targetDate < todayDate) {
-        badgeClass = "status-departed";
-        label = `Departed (${statusStr})`;
-      } else {
-        if (currentTimeMins < arrivalMins) {
-          badgeClass = "status-enroute";
-          label = `En Route (${statusStr})`;
-        } else if (currentTimeMins >= arrivalMins && currentTimeMins <= departureMins) {
-          badgeClass = "status-inport";
-          label = `In Port (${statusStr})`;
-        } else {
-          badgeClass = "status-departed";
-          label = `Departed (${statusStr})`;
-        }
-      }
-
-      return `<span class="status-badge ${badgeClass}">${label}</span>`;
-    }
-
     async function loadSchedule() {
       const jsonUrl = './cruise_schedule.json';
 
       try {
         const res = await fetch(jsonUrl);
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        
         const data = await res.json();
-        const tbody = document.getElementById('schedule-body');
-        
-        if (!data || data.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="5">No upcoming cruise arrivals scheduled.</td></tr>';
-          return;
-        }
 
-        let rowsHTML = '';
+        let halifaxHTML = '';
+        let sydneyHTML = '';
+
         data.forEach(item => {
-          const formattedStatus = getDynamicStatus(item.date, item.status);
-          rowsHTML += `<tr>
+          let arrival = '—';
+          let departure = '—';
+
+          if (item.status && item.status.includes('-')) {
+            const parts = item.status.split('-').map(t => t.trim());
+            if (parts.length === 2) {
+              arrival = parts[0];
+              departure = parts[1];
+            }
+          } else if (item.status) {
+            arrival = item.status;
+          }
+
+          const row = `<tr>
             <td>${item.date}</td>
             <td><strong>${item.ship}</strong></td>
-            <td><span class="port-badge">${item.port}</span></td>
+            <td><span class="status-badge status-time">${arrival}</span></td>
+            <td><span class="status-badge status-time">${departure}</span></td>
             <td>${item.passengers || 'N/A'}</td>
-            <td>${formattedStatus}</td>
           </tr>`;
+
+          if (item.port && item.port.toLowerCase() === 'halifax') {
+            halifaxHTML += row;
+          } else if (item.port && item.port.toLowerCase() === 'sydney') {
+            sydneyHTML += row;
+          }
         });
 
-        tbody.innerHTML = rowsHTML;
+        document.getElementById('halifax-tbody').innerHTML = halifaxHTML || '<tr><td colspan="5" class="empty-msg">No scheduled arrivals for Halifax.</td></tr>';
+        document.getElementById('sydney-tbody').innerHTML = sydneyHTML || '<tr><td colspan="5" class="empty-msg">No scheduled arrivals for Sydney.</td></tr>';
 
       } catch (err) {
         console.error('Schedule fetch error:', err);
-        document.getElementById('schedule-body').innerHTML = `
-          <tr>
-            <td>Today</td>
-            <td><strong>Check Front Desk</strong></td>
-            <td><span class="port-badge">Halifax</span></td>
-            <td>-</td>
-            <td><span class="status-badge status-inport">In Port</span></td>
-          </tr>`;
+        document.getElementById('halifax-tbody').innerHTML = '<tr><td colspan="5" class="empty-msg">Unable to load schedule data.</td></tr>';
+        document.getElementById('sydney-tbody').innerHTML = '<tr><td colspan="5" class="empty-msg">Unable to load schedule data.</td></tr>';
       }
     }
 
