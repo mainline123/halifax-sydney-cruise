@@ -19,66 +19,94 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      padding: 25px;
+      justify-content: space-between;
+      padding: 35px;
     }
     .header {
-      border-bottom: 2px solid #1a233a;
-      padding-bottom: 12px;
-      margin-bottom: 20px;
+      border-bottom: 3px solid #1a233a;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .header h1 {
-      color: #d4af37;
-      font-size: 24px;
+      color: #d4af37; /* Gold accent */
+      font-size: 38px;
+      font-weight: bold;
       text-transform: uppercase;
       letter-spacing: 1px;
+    }
+    .datetime {
+      color: #00bfff;
+      font-size: 26px;
+      font-weight: bold;
+      text-align: right;
+    }
+    .table-container {
+      flex-grow: 1;
+      overflow: hidden;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       background: #12192c;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
     }
     th, td {
-      padding: 14px 16px;
+      padding: 22px 24px;
       text-align: left;
     }
     th {
       background-color: #18223c;
       color: #00bfff;
-      font-size: 13px;
+      font-size: 22px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 1px solid #1a233a;
+      letter-spacing: 1.5px;
+      border-bottom: 2px solid #1a233a;
     }
     td {
-      font-size: 15px;
+      font-size: 26px;
       border-bottom: 1px solid #1a233a;
     }
     tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
+    tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }
     .port-badge {
       display: inline-block;
-      padding: 4px 8px;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 22px;
       font-weight: bold;
       background: #1e2d4a;
       color: #8ab4f8;
+    }
+    .footer {
+      border-top: 3px solid #1a233a;
+      padding-top: 20px;
+      margin-top: 25px;
+      text-align: center;
+    }
+    .return-btn {
+      color: #d4af37;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
   </style>
 </head>
 <body>
 
   <div class="screen">
+    <!-- Header with Live Date & Time -->
     <div class="header">
       <h1>Nova Scotia Cruise Arrivals</h1>
+      <div id="live-datetime" class="datetime">Loading date & time...</div>
     </div>
 
-    <div id="table-container">
+    <!-- Main Schedule Table -->
+    <div class="table-container">
       <table>
         <thead>
           <tr>
@@ -93,9 +121,26 @@
         </tbody>
       </table>
     </div>
+
+    <!-- Footer Prompt -->
+    <div class="footer">
+      <div class="return-btn">Touch Anywhere to Return to Main Menu</div>
+    </div>
   </div>
 
   <script>
+    // Live Clock Function
+    function updateClock() {
+      const now = new Date();
+      const optionsDate = { weekday: 'short', month: 'short', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', optionsDate);
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('live-datetime').textContent = `${dateStr} | ${timeStr}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Schedule Loader
     async function loadSchedule() {
       const jsonUrl = './cruise_schedule.json';
 
