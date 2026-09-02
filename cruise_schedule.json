@@ -52,7 +52,7 @@
   { "date": "Sep 26", "ship": "Silver Shadow", "port": "Sydney", "passengers": "392", "status": "08:00 - 18:00" },
   { "date": "Sep 27", "ship": "Crystal Symphony", "port": "Sydney", "passengers": "606", "status": "08:00 - 17:00" },
   { "date": "Sep 27", "ship": "Sapphire Princess", "port": "Halifax", "passengers": "2,988", "status": "08:00 - 17:00" },
-  { "date": "Sep 28", "ship": "Norwegian Escape", "port": "Sydney", "passengers": "4,266", "status": "07:00 - 16:00" },
+  { "date": "Sep 28", "ship": "Norwegian Escape", "port": "Sydney", "passengers": "07:00 - 16:00", "status": "07:00 - 16:00" },
   { "date": "Sep 29", "ship": "Viking Mars", "port": "Halifax", "passengers": "930", "status": "08:00 - 18:00" },
   { "date": "Sep 29", "ship": "Scenic Eclipse", "port": "Sydney", "passengers": "228", "status": "09:30 - 23:00" },
   { "date": "Sep 30", "ship": "SH Vega", "port": "Sydney", "passengers": "152", "status": "08:00 - 14:00" },
