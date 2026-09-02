@@ -1,229 +1,229 @@
-<!DOCTYPE html>
+add colors for enroute departed inport etc <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nova Scotia Cruise Arrivals</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080d1a;
-      color: #ffffff;
-    }
-    .screen {
-      width: 100vw;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      padding: 35px;
-    }
-    .header {
-      border-bottom: 3px solid #1a233a;
-      padding-bottom: 20px;
-      margin-bottom: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .header h1 {
-      color: #d4af37;
-      font-size: 38px;
-      font-weight: bold;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    .datetime {
-      color: #00bfff;
-      font-size: 28px;
-      font-weight: bold;
-      text-align: right;
-      min-width: 300px;
-    }
-    .table-container {
-      flex-grow: 1;
-      overflow: hidden;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background: #12192c;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 20px 22px;
-      text-align: left;
-    }
-    th {
-      background-color: #18223c;
-      color: #00bfff;
-      font-size: 22px;
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-      border-bottom: 2px solid #1a233a;
-    }
-    td {
-      font-size: 24px;
-      border-bottom: 1px solid #1a233a;
-    }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }
-    .port-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 20px;
-      font-weight: bold;
-      background: #1e2d4a;
-      color: #8ab4f8;
-    }
-    .status-badge {
-      display: inline-block;
-      padding: 6px 14px;
-      border-radius: 6px;
-      font-size: 18px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .status-inport { background: #137333; color: #ceead6; }
-    .status-enroute { background: #1f3864; color: #8ab4f8; }
-    .status-departed { background: #810e15; color: #fad2d3; }
-    .status-time { background: #202124; color: #bdc1c6; }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova Scotia Cruise Arrivals</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #080d1a;
+      color: #ffffff;
+    }
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 35px;
+    }
+    .header {
+      border-bottom: 3px solid #1a233a;
+      padding-bottom: 20px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header h1 {
+      color: #d4af37;
+      font-size: 38px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .datetime {
+      color: #00bfff;
+      font-size: 28px;
+      font-weight: bold;
+      text-align: right;
+      min-width: 300px;
+    }
+    .table-container {
+      flex-grow: 1;
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #12192c;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      padding: 20px 22px;
+      text-align: left;
+    }
+    th {
+      background-color: #18223c;
+      color: #00bfff;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-bottom: 2px solid #1a233a;
+    }
+    td {
+      font-size: 24px;
+      border-bottom: 1px solid #1a233a;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.03); }
+    .port-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 20px;
+      font-weight: bold;
+      background: #1e2d4a;
+      color: #8ab4f8;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .status-inport { background: #137333; color: #ceead6; }
+    .status-enroute { background: #1f3864; color: #8ab4f8; }
+    .status-departed { background: #810e15; color: #fad2d3; }
+    .status-time { background: #202124; color: #bdc1c6; }
+  </style>
 </head>
 <body>
 
-  <div class="screen">
-    <div class="header">
-      <h1>Nova Scotia Cruise Arrivals</h1>
-      <div id="live-datetime" class="datetime">Loading...</div>
-    </div>
+  <div class="screen">
+    <div class="header">
+      <h1>Nova Scotia Cruise Arrivals</h1>
+      <div id="live-datetime" class="datetime">Loading...</div>
+    </div>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Vessel Name</th>
-            <th>Port</th>
-            <th>Passengers</th>
-            <th>Status / Hours</th>
-          </tr>
-        </thead>
-        <tbody id="schedule-body">
-          <!-- Data rows injected here -->
-        </tbody>
-      </table>
-    </div>
-  </div>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Vessel Name</th>
+            <th>Port</th>
+            <th>Passengers</th>
+            <th>Status / Hours</th>
+          </tr>
+        </thead>
+        <tbody id="schedule-body">
+          <!-- Data rows injected here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  <script>
-    function updateClock() {
-      const now = new Date();
-      const optionsDate = { weekday: 'short', month: 'short', day: 'numeric' };
-      const dateStr = now.toLocaleDateString('en-US', optionsDate);
-      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-      document.getElementById('live-datetime').textContent = `${dateStr} | ${timeStr}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const optionsDate = { weekday: 'short', month: 'short', day: 'numeric' };
+      const dateStr = now.toLocaleDateString('en-US', optionsDate);
+      const timeStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+      document.getElementById('live-datetime').textContent = `${dateStr} | ${timeStr}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-    function parseTime(timeStr) {
-      const parts = timeStr.split(':');
-      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
-    }
+    function parseTime(timeStr) {
+      const parts = timeStr.split(':');
+      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+    }
 
-    function getDynamicStatus(itemDateStr, statusStr) {
-      if (!statusStr.includes('-')) {
-        return `<span class="status-badge status-time">${statusStr}</span>`;
-      }
+    function getDynamicStatus(itemDateStr, statusStr) {
+      if (!statusStr.includes('-')) {
+        return `<span class="status-badge status-time">${statusStr}</span>`;
+      }
 
-      const times = statusStr.split('-').map(t => t.trim());
-      if (times.length !== 2 || !times[0].includes(':') || !times[1].includes(':')) {
-        return `<span class="status-badge status-time">${statusStr}</span>`;
-      }
+      const times = statusStr.split('-').map(t => t.trim());
+      if (times.length !== 2 || !times[0].includes(':') || !times[1].includes(':')) {
+        return `<span class="status-badge status-time">${statusStr}</span>`;
+      }
 
-      const now = new Date();
-      const itemDate = new Date(`${itemDateStr} 2026`);
-      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const targetDate = new Date(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate());
+      const now = new Date();
+      const itemDate = new Date(`${itemDateStr} 2026`);
+      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const targetDate = new Date(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate());
 
-      const currentTimeMins = now.getHours() * 60 + now.getMinutes();
-      const arrivalMins = parseTime(times[0]);
-      const departureMins = parseTime(times[1]);
+      const currentTimeMins = now.getHours() * 60 + now.getMinutes();
+      const arrivalMins = parseTime(times[0]);
+      const departureMins = parseTime(times[1]);
 
-      let badgeClass = "status-time";
-      let label = statusStr;
+      let badgeClass = "status-time";
+      let label = statusStr;
 
-      if (targetDate > todayDate) {
-        badgeClass = "status-enroute";
-        label = `En Route (${statusStr})`;
-      } else if (targetDate < todayDate) {
-        badgeClass = "status-departed";
-        label = `Departed (${statusStr})`;
-      } else {
-        if (currentTimeMins < arrivalMins) {
-          badgeClass = "status-enroute";
-          label = `En Route (${statusStr})`;
-        } else if (currentTimeMins >= arrivalMins && currentTimeMins <= departureMins) {
-          badgeClass = "status-inport";
-          label = `In Port (${statusStr})`;
-        } else {
-          badgeClass = "status-departed";
-          label = `Departed (${statusStr})`;
-        }
-      }
+      if (targetDate > todayDate) {
+        badgeClass = "status-enroute";
+        label = `En Route (${statusStr})`;
+      } else if (targetDate < todayDate) {
+        badgeClass = "status-departed";
+        label = `Departed (${statusStr})`;
+      } else {
+        if (currentTimeMins < arrivalMins) {
+          badgeClass = "status-enroute";
+          label = `En Route (${statusStr})`;
+        } else if (currentTimeMins >= arrivalMins && currentTimeMins <= departureMins) {
+          badgeClass = "status-inport";
+          label = `In Port (${statusStr})`;
+        } else {
+          badgeClass = "status-departed";
+          label = `Departed (${statusStr})`;
+        }
+      }
 
-      return `<span class="status-badge ${badgeClass}">${label}</span>`;
-    }
+      return `<span class="status-badge ${badgeClass}">${label}</span>`;
+    }
 
-    async function loadSchedule() {
-      const jsonUrl = './cruise_schedule.json';
+    async function loadSchedule() {
+      const jsonUrl = './cruise_schedule.json';
 
-      try {
-        const res = await fetch(jsonUrl);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        
-        const data = await res.json();
-        const tbody = document.getElementById('schedule-body');
-        
-        if (!data || data.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="5">No upcoming cruise arrivals scheduled.</td></tr>';
-          return;
-        }
+      try {
+        const res = await fetch(jsonUrl);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        
+        const data = await res.json();
+        const tbody = document.getElementById('schedule-body');
+        
+        if (!data || data.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="5">No upcoming cruise arrivals scheduled.</td></tr>';
+          return;
+        }
 
-        let rowsHTML = '';
-        data.forEach(item => {
-          const formattedStatus = getDynamicStatus(item.date, item.status);
-          rowsHTML += `<tr>
-            <td>${item.date}</td>
-            <td><strong>${item.ship}</strong></td>
-            <td><span class="port-badge">${item.port}</span></td>
-            <td>${item.passengers || 'N/A'}</td>
-            <td>${formattedStatus}</td>
-          </tr>`;
-        });
+        let rowsHTML = '';
+        data.forEach(item => {
+          const formattedStatus = getDynamicStatus(item.date, item.status);
+          rowsHTML += `<tr>
+            <td>${item.date}</td>
+            <td><strong>${item.ship}</strong></td>
+            <td><span class="port-badge">${item.port}</span></td>
+            <td>${item.passengers || 'N/A'}</td>
+            <td>${formattedStatus}</td>
+          </tr>`;
+        });
 
-        tbody.innerHTML = rowsHTML;
+        tbody.innerHTML = rowsHTML;
 
-      } catch (err) {
-        console.error('Schedule fetch error:', err);
-        document.getElementById('schedule-body').innerHTML = `
-          <tr>
-            <td>Today</td>
-            <td><strong>Check Front Desk</strong></td>
-            <td><span class="port-badge">Halifax</span></td>
-            <td>-</td>
-            <td><span class="status-badge status-inport">In Port</span></td>
-          </tr>`;
-      }
-    }
+      } catch (err) {
+        console.error('Schedule fetch error:', err);
+        document.getElementById('schedule-body').innerHTML = `
+          <tr>
+            <td>Today</td>
+            <td><strong>Check Front Desk</strong></td>
+            <td><span class="port-badge">Halifax</span></td>
+            <td>-</td>
+            <td><span class="status-badge status-inport">In Port</span></td>
+          </tr>`;
+      }
+    }
 
-    loadSchedule();
-  </script>
+    loadSchedule();
+  </script>
 </body>
 </html>
