@@ -19,7 +19,6 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       padding: 35px;
     }
     .header {
@@ -31,7 +30,7 @@
       align-items: center;
     }
     .header h1 {
-      color: #d4af37; /* Gold accent */
+      color: #d4af37;
       font-size: 38px;
       font-weight: bold;
       text-transform: uppercase;
@@ -39,9 +38,10 @@
     }
     .datetime {
       color: #00bfff;
-      font-size: 26px;
+      font-size: 28px;
       font-weight: bold;
       text-align: right;
+      min-width: 300px;
     }
     .table-container {
       flex-grow: 1;
@@ -81,31 +81,18 @@
       background: #1e2d4a;
       color: #8ab4f8;
     }
-    .footer {
-      border-top: 3px solid #1a233a;
-      padding-top: 20px;
-      margin-top: 25px;
-      text-align: center;
-    }
-    .return-btn {
-      color: #d4af37;
-      font-size: 28px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
   </style>
 </head>
 <body>
 
   <div class="screen">
-    <!-- Header with Live Date & Time -->
+    <!-- Header with Title and Live Date/Time -->
     <div class="header">
       <h1>Nova Scotia Cruise Arrivals</h1>
-      <div id="live-datetime" class="datetime">Loading date & time...</div>
+      <div id="live-datetime" class="datetime">Loading...</div>
     </div>
 
-    <!-- Main Schedule Table -->
+    <!-- Main Schedule Table (Takes up the rest of the screen) -->
     <div class="table-container">
       <table>
         <thead>
@@ -117,14 +104,9 @@
           </tr>
         </thead>
         <tbody id="schedule-body">
-          <!-- Data rows dynamically injected -->
+          <!-- Data rows injected here -->
         </tbody>
       </table>
-    </div>
-
-    <!-- Footer Prompt -->
-    <div class="footer">
-      <div class="return-btn">Touch Anywhere to Return to Main Menu</div>
     </div>
   </div>
 
