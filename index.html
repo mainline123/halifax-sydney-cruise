@@ -81,18 +81,29 @@
       background: #1e2d4a;
       color: #8ab4f8;
     }
+    /* Status Badges */
+    .status-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .status-inport { background: #137333; color: #ceead6; }
+    .status-enroute { background: #1f3864; color: #8ab4f8; }
+    .status-departed { background: #810e15; color: #fad2d3; }
+    .status-time { background: #202124; color: #bdc1c6; }
   </style>
 </head>
 <body>
 
   <div class="screen">
-    <!-- Header with Title and Live Date/Time -->
     <div class="header">
       <h1>Nova Scotia Cruise Arrivals</h1>
       <div id="live-datetime" class="datetime">Loading...</div>
     </div>
 
-    <!-- Main Schedule Table (Takes up the rest of the screen) -->
     <div class="table-container">
       <table>
         <thead>
@@ -100,7 +111,7 @@
             <th>Date</th>
             <th>Vessel Name</th>
             <th>Port</th>
-            <th>Status</th>
+            <th>Status / Hours</th>
           </tr>
         </thead>
         <tbody id="schedule-body">
@@ -111,7 +122,6 @@
   </div>
 
   <script>
-    // Live Clock Function
     function updateClock() {
       const now = new Date();
       const optionsDate = { weekday: 'short', month: 'short', day: 'numeric' };
@@ -122,7 +132,60 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Schedule Loader
+    function parseTime(timeStr) {
+      const parts = timeStr.split(':');
+      return parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+    }
+
+    function getDynamicStatus(itemDateStr, statusStr) {
+      // Basic check for time range format like "08:00 - 18:00"
+      if (!statusStr.includes('-')) {
+        return `<span class="status-badge status-time">${statusStr}</span>`;
+      }
+
+      const times = statusStr.split('-').map(t => t.trim());
+      if (times.length !== 2 || !times[0].includes(':') || !times[1].includes(':')) {
+        return `<span class="status-badge status-time">${statusStr}</span>`;
+      }
+
+      const now = new Date();
+      // Map "Sep 02" etc to current year comparison
+      const itemDate = new Date(`${itemDateStr} 2026`);
+      
+      // Zero out times for date-only comparison
+      const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const targetDate = new Date(itemDate.getFullYear(), itemDate.getMonth(), itemDate.getDate());
+
+      const currentTimeMins = now.getHours() * 60 + now.getMinutes();
+      const arrivalMins = parseTime(times[0]);
+      const departureMins = parseTime(times[1]);
+
+      let badgeClass = "status-time";
+      let label = statusStr;
+
+      if (targetDate > todayDate) {
+        badgeClass = "status-enroute";
+        label = `En Route (${statusStr})`;
+      } else if (targetDate < todayDate) {
+        badgeClass = "status-departed";
+        label = `Departed (${statusStr})`;
+      } else {
+        // Today
+        if (currentTimeMins < arrivalMins) {
+          badgeClass = "status-enroute";
+          label = `En Route (${statusStr})`;
+        } else if (currentTimeMins >= arrivalMins && currentTimeMins <= departureMins) {
+          badgeClass = "status-inport";
+          label = `In Port (${statusStr})`;
+        } else {
+          badgeClass = "status-departed";
+          label = `Departed (${statusStr})`;
+        }
+      }
+
+      return `<span class="status-badge ${badgeClass}">${label}</span>`;
+    }
+
     async function loadSchedule() {
       const jsonUrl = './cruise_schedule.json';
 
@@ -140,11 +203,12 @@
 
         let rowsHTML = '';
         data.forEach(item => {
+          const formattedStatus = getDynamicStatus(item.date, item.status);
           rowsHTML += `<tr>
             <td>${item.date}</td>
             <td><strong>${item.ship}</strong></td>
             <td><span class="port-badge">${item.port}</span></td>
-            <td>${item.status}</td>
+            <td>${formattedStatus}</td>
           </tr>`;
         });
 
@@ -157,7 +221,7 @@
             <td>Today</td>
             <td><strong>Check Front Desk</strong></td>
             <td><span class="port-badge">Halifax</span></td>
-            <td>In Port</td>
+            <td><span class="status-badge status-inport">In Port</span></td>
           </tr>`;
       }
     }
