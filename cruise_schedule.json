@@ -1,0 +1,14 @@
+[
+  {
+    "date": "Today",
+    "ship": "Queen Mary 2",
+    "port": "Halifax",
+    "status": "08:00 - 18:00"
+  },
+  {
+    "date": "Today",
+    "ship": "Caribbean Princess",
+    "port": "Sydney",
+    "status": "09:00 - 17:00"
+  }
+]
