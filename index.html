@@ -63,7 +63,7 @@ header{
 h1{
   margin:0;
 
-  font-size:clamp(27px,5vw,54px);
+  font-size:clamp(30px,5.5vw,58px);
   line-height:1.05;
 
   font-weight:900;
@@ -77,7 +77,7 @@ h1{
 
   color:var(--blue);
 
-  font-size:clamp(18px,3vw,31px);
+  font-size:clamp(20px,3.2vw,34px);
   font-weight:800;
 }
 
@@ -87,7 +87,7 @@ h1{
   color:var(--gold);
 
   font-family:monospace;
-  font-size:clamp(25px,4.5vw,46px);
+  font-size:clamp(28px,4.8vw,50px);
   font-weight:900;
 }
 
@@ -96,7 +96,7 @@ h1{
 
   color:var(--muted);
 
-  font-size:clamp(14px,2.2vw,23px);
+  font-size:clamp(16px,2.5vw,26px);
   font-weight:700;
 
   text-transform:uppercase;
@@ -122,10 +122,7 @@ h1{
 }
 
 
-/*
-  PORTRAIT COLUMN WIDTHS
-  Extra space given to PORT TIME
-*/
+/* PORTRAIT COLUMN WIDTHS */
 
 .board-head,
 .row{
@@ -150,7 +147,7 @@ h1{
 
   border-bottom:3px solid var(--blue);
 
-  font-size:clamp(13px,2.1vw,22px);
+  font-size:clamp(15px,2.4vw,25px);
   font-weight:900;
 
   text-transform:uppercase;
@@ -173,12 +170,14 @@ h1{
 }
 
 
+/* BIGGER ROW TEXT */
+
 .row{
   min-height:0;
 
   border-bottom:1px solid var(--line);
 
-  font-size:clamp(16px,2.6vw,28px);
+  font-size:clamp(19px,3.2vw,34px);
   font-weight:700;
 }
 
@@ -211,7 +210,7 @@ h1{
 
   white-space:nowrap;
 
-  font-size:clamp(15px,2.3vw,25px);
+  font-size:clamp(18px,2.8vw,30px);
 }
 
 
@@ -239,7 +238,7 @@ h1{
 
   color:var(--muted);
 
-  font-size:clamp(20px,3vw,32px);
+  font-size:clamp(22px,3.2vw,35px);
   font-weight:800;
 }
 
@@ -262,7 +261,7 @@ footer{
 
   color:var(--muted);
 
-  font-size:clamp(12px,1.8vw,19px);
+  font-size:clamp(14px,2vw,21px);
   font-weight:700;
 }
 
@@ -591,9 +590,7 @@ async function loadSchedule(){
     }
 
 
-    /*
-      HALIFAX ONLY
-    */
+    /* HALIFAX ONLY */
 
     cruises =
       data.filter(
