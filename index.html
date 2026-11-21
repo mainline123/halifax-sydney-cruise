@@ -1,592 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Nova Scotia Cruise Ship Schedule</title>
-
-  <style>
-    :root {
-      --bg: #061525;
-      --panel: #0d2740;
-      --panel2: #123552;
-      --blue: #55c8ff;
-      --gold: #ffd166;
-      --white: #ffffff;
-      --muted: #b9cad8;
-      --line: rgba(255,255,255,0.14);
-      --halifax: #55c8ff;
-      --sydney: #ffd166;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<title>Halifax Cruise Ship Schedule</title>
 
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
+<style>
+:root{
+  --bg:#061321;
+  --panel:#0d2238;
+  --line:#29445e;
+  --blue:#62c9ff;
+  --gold:#ffd166;
+  --white:#ffffff;
+  --muted:#b8c9d8;
+}
 
-    body {
-      background:
-        linear-gradient(rgba(3,15,27,.90), rgba(3,15,27,.94)),
-        url("background.jpg") center center / cover no-repeat;
+*{
+  box-sizing:border-box;
+}
 
-      color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
 
-      display: flex;
-      flex-direction: column;
+body{
+  background:
+    linear-gradient(rgba(3,15,26,.88),rgba(3,15,26,.94)),
+    url("background.jpg") center/cover no-repeat;
 
-      padding: 2vh 2vw;
-    }
+  color:var(--white);
+  font-family:Arial,Helvetica,sans-serif;
 
-    /* HEADER */
+  display:flex;
+  flex-direction:column;
 
-    header {
-      flex-shrink: 0;
+  padding:2vh 3vw;
+}
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+/* HEADER */
 
-      background: rgba(13,39,64,.94);
+header{
+  flex-shrink:0;
 
-      border-bottom: 4px solid var(--blue);
-      border-radius: 14px;
+  background:rgba(13,34,56,.96);
 
-      padding: 1.8vh 2vw;
-      margin-bottom: 1.5vh;
-    }
+  border-radius:16px;
+  border-bottom:5px solid var(--blue);
 
-    .title h1 {
-      font-size: clamp(26px, 3vw, 50px);
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
+  padding:2.2vh 3vw;
 
-    .title .subtitle {
-      margin-top: .5vh;
+  margin-bottom:1.5vh;
 
-      font-size: clamp(16px, 1.5vw, 25px);
-      font-weight: 700;
+  text-align:center;
+}
 
-      color: var(--blue);
-    }
+h1{
+  margin:0;
 
-    .clock-area {
-      text-align: right;
-    }
+  font-size:clamp(27px,5vw,54px);
+  line-height:1.05;
 
-    #clock {
-      font-family: monospace;
-      font-size: clamp(25px, 3vw, 48px);
-      font-weight: 900;
-      color: var(--gold);
-    }
+  font-weight:900;
+  letter-spacing:1px;
 
-    #today {
-      margin-top: .4vh;
+  text-transform:uppercase;
+}
 
-      color: var(--muted);
-      font-size: clamp(13px, 1.2vw, 20px);
-      font-weight: 700;
+.subtitle{
+  margin-top:.8vh;
 
-      text-transform: uppercase;
-    }
+  color:var(--blue);
 
-    /* BOARD */
+  font-size:clamp(18px,3vw,31px);
+  font-weight:800;
+}
 
-    .board {
-      flex: 1;
+.clock{
+  margin-top:1.5vh;
 
-      min-height: 0;
+  color:var(--gold);
 
-      display: flex;
-      flex-direction: column;
+  font-family:monospace;
+  font-size:clamp(25px,4.5vw,46px);
+  font-weight:900;
+}
 
-      background: rgba(13,39,64,.94);
+.date{
+  margin-top:.4vh;
 
-      border-radius: 14px;
+  color:var(--muted);
 
-      padding: 1vh 1vw;
+  font-size:clamp(14px,2.2vw,23px);
+  font-weight:700;
 
-      overflow: hidden;
-    }
+  text-transform:uppercase;
+}
 
-    .head,
-    .row {
-      display: grid;
 
-      grid-template-columns:
-        13%
-        29%
-        14%
-        14%
-        15%
-        15%;
+/* BOARD */
 
-      align-items: center;
-    }
+.board{
+  flex:1;
+  min-height:0;
 
-    .head {
-      flex-shrink: 0;
+  display:flex;
+  flex-direction:column;
 
-      min-height: 6vh;
+  background:rgba(13,34,56,.96);
 
-      border-bottom: 3px solid var(--blue);
+  border-radius:16px;
 
-      color: var(--blue);
+  padding:1.3vh 2vw;
 
-      font-size: clamp(15px, 1.35vw, 23px);
-      font-weight: 900;
+  overflow:hidden;
+}
 
-      text-transform: uppercase;
-    }
+.board-head,
+.row{
+  display:grid;
 
-    .head div,
-    .row div {
-      padding: 0 .8vw;
-    }
+  grid-template-columns:
+    17%
+    36%
+    22%
+    25%;
 
-    #schedule {
-      flex: 1;
-      min-height: 0;
+  align-items:center;
+}
 
-      display: grid;
-      grid-template-rows: repeat(12, minmax(0, 1fr));
-    }
+.board-head{
+  flex-shrink:0;
 
-    .row {
-      min-height: 0;
+  min-height:5.5vh;
 
-      border-bottom: 1px solid var(--line);
+  color:var(--blue);
 
-      font-size: clamp(16px, 1.55vw, 27px);
-      font-weight: 700;
-    }
+  border-bottom:3px solid var(--blue);
 
-    .row:nth-child(even) {
-      background: rgba(255,255,255,.025);
-    }
+  font-size:clamp(14px,2.3vw,23px);
+  font-weight:900;
 
-    .ship {
-      font-weight: 900;
-      color: var(--white);
+  text-transform:uppercase;
+}
 
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+.board-head div,
+.row div{
+  padding:0 1vw;
+}
 
-    .port {
-      display: inline-block;
+.schedule{
+  flex:1;
+  min-height:0;
 
-      padding: .7vh .8vw;
+  display:grid;
 
-      border-radius: 7px;
+  grid-template-rows:
+    repeat(10,minmax(0,1fr));
+}
 
-      text-align: center;
+.row{
+  min-height:0;
 
-      font-size: .88em;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
+  border-bottom:1px solid var(--line);
 
-    .halifax {
-      background: var(--halifax);
-      color: #00131f;
-    }
+  font-size:clamp(17px,2.8vw,29px);
+  font-weight:700;
+}
 
-    .sydney {
-      background: var(--sydney);
-      color: #1b1300;
-    }
+.row:nth-child(even){
+  background:rgba(255,255,255,.025);
+}
 
-    .passengers {
-      font-weight: 800;
-    }
+.ship{
+  font-weight:900;
 
-    .time {
-      font-family: monospace;
-      font-weight: 900;
-    }
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
 
-    /* EMPTY / ERROR MESSAGE */
+.passengers{
+  text-align:center;
+}
 
-    .message {
-      grid-column: 1 / -1;
+.time{
+  font-family:monospace;
+  font-weight:900;
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  text-align:center;
+}
 
-      text-align: center;
+.date-cell{
+  color:var(--gold);
+  font-weight:900;
+}
 
-      font-size: clamp(20px, 2vw, 34px);
-      font-weight: 800;
 
-      color: var(--muted);
+/* EMPTY MESSAGE */
 
-      padding: 4vh;
-    }
+.message{
+  grid-column:1/-1;
 
-    /* FOOTER */
+  display:flex;
 
-    footer {
-      flex-shrink: 0;
+  justify-content:center;
+  align-items:center;
 
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  text-align:center;
 
-      padding: 1.2vh .5vw 0;
+  padding:5vh 4vw;
 
-      color: var(--muted);
+  color:var(--muted);
 
-      font-size: clamp(12px, 1vw, 17px);
-      font-weight: 700;
-    }
+  font-size:clamp(20px,3vw,32px);
+  font-weight:800;
+}
 
-    #page-info {
-      color: var(--gold);
-    }
 
-    #sync {
-      color: #62e6a7;
-    }
-  </style>
+/* FOOTER */
+
+footer{
+  flex-shrink:0;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+
+  gap:.4vh;
+
+  padding-top:1.2vh;
+
+  text-align:center;
+
+  color:var(--muted);
+
+  font-size:clamp(12px,1.8vw,19px);
+  font-weight:700;
+}
+
+#page{
+  color:var(--gold);
+}
+
+#status{
+  color:#62e6a7;
+}
+
+</style>
 </head>
+
 
 <body>
 
+
 <header>
 
-  <div class="title">
-    <h1>Nova Scotia Cruise Ship Schedule</h1>
+<h1>Halifax Cruise Ships</h1>
 
-    <div class="subtitle">
-      Halifax • Sydney
-    </div>
-  </div>
+<div class="subtitle">
+Port of Halifax • Nova Scotia
+</div>
 
-  <div class="clock-area">
-    <div id="clock">--:--:--</div>
-    <div id="today">---</div>
-  </div>
+<div class="clock" id="clock">
+--:--:--
+</div>
+
+<div class="date" id="today">
+---
+</div>
 
 </header>
 
 
+
 <div class="board">
 
-  <div class="head">
-    <div>Date</div>
-    <div>Ship</div>
-    <div>Port</div>
-    <div>Passengers</div>
-    <div>Arrival</div>
-    <div>Departure</div>
-  </div>
+<div class="board-head">
 
-  <div id="schedule"></div>
+<div>Date</div>
+
+<div>Ship</div>
+
+<div>Passengers</div>
+
+<div>Port Time</div>
 
 </div>
 
 
+<div
+  class="schedule"
+  id="schedule">
+</div>
+
+</div>
+
+
+
 <footer>
 
-  <span>
-    Halifax &amp; Sydney • Nova Scotia Cruise Information
-  </span>
+<div>
+Halifax Cruise Ship Schedule
+</div>
 
-  <span id="page-info">
-    PAGE 1 / 1
-  </span>
+<div id="page">
+PAGE 1 / 1
+</div>
 
-  <span id="sync">
-    Loading schedule...
-  </span>
+<div id="status">
+Loading cruise schedule...
+</div>
 
 </footer>
 
 
+
 <script>
 
-const DATA_FILE = "cruise_schedule.json";
+const DATA_FILE =
+  "cruise_schedule.json";
 
-const PER_PAGE = 12;
+const PER_PAGE = 10;
 
 const ROTATE_MS = 12000;
 
-const REFRESH_MS = 5 * 60 * 1000;
+const REFRESH_MS =
+  5 * 60 * 1000;
 
-let cruiseData = [];
+
+let cruises = [];
 
 let page = 0;
 
-let rotateTimer = null;
+let rotationTimer;
 
 
 /* CLOCK */
 
-function updateClock() {
+function updateClock(){
 
-  const now = new Date();
+  const now =
+    new Date();
 
-  document.getElementById("clock").textContent =
-    now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit"
-    });
+  document
+    .getElementById("clock")
+    .textContent =
+      now.toLocaleTimeString(
+        [],
+        {
+          hour:"2-digit",
+          minute:"2-digit",
+          second:"2-digit"
+        }
+      );
 
-  document.getElementById("today").textContent =
-    now.toLocaleDateString([], {
-      weekday: "short",
-      month: "short",
-      day: "numeric",
-      year: "numeric"
-    });
+  document
+    .getElementById("today")
+    .textContent =
+      now.toLocaleDateString(
+        [],
+        {
+          weekday:"long",
+          month:"long",
+          day:"numeric",
+          year:"numeric"
+        }
+      );
 }
 
 updateClock();
 
-setInterval(updateClock, 1000);
+setInterval(
+  updateClock,
+  1000
+);
 
-
-/* SPLIT ARRIVAL / DEPARTURE */
-
-function splitTimes(status) {
-
-  const value = String(status || "").trim();
-
-  if (!value) {
-    return {
-      arrival: "—",
-      departure: "—"
-    };
-  }
-
-  if (value.includes(" - ")) {
-
-    const parts = value.split(" - ");
-
-    return {
-      arrival: parts[0] || "—",
-      departure: parts[1] || "—"
-    };
-  }
-
-  if (value.toLowerCase().includes("arrival")) {
-
-    const match =
-      value.match(/(\d{1,2}:\d{2})\s*$/);
-
-    return {
-      arrival: "—",
-      departure: match ? match[1] : value
-    };
-  }
-
-  return {
-    arrival: value,
-    departure: "—"
-  };
-}
-
-
-/* DATE SORTING */
-
-function dateNumber(dateText) {
-
-  const currentYear =
-    new Date().getFullYear();
-
-  const parsed =
-    new Date(`${dateText} ${currentYear}`);
-
-  if (isNaN(parsed.getTime())) {
-    return Number.MAX_SAFE_INTEGER;
-  }
-
-  return parsed.getTime();
-}
 
 
 /* RENDER */
 
-function render() {
+function render(){
 
   const container =
-    document.getElementById("schedule");
+    document.getElementById(
+      "schedule"
+    );
 
-  if (!cruiseData.length) {
+  if(!cruises.length){
 
     container.innerHTML =
-      `<div class="message">
-        No cruise ships currently listed.
-      </div>`;
+      `
+      <div class="message">
+        No Halifax cruise ships
+        currently listed.
+      </div>
+      `;
 
-    document.getElementById("page-info")
-      .textContent = "PAGE 1 / 1";
+    document
+      .getElementById("page")
+      .textContent =
+        "PAGE 1 / 1";
 
     return;
   }
 
+
   const totalPages =
     Math.max(
       1,
-      Math.ceil(cruiseData.length / PER_PAGE)
+      Math.ceil(
+        cruises.length /
+        PER_PAGE
+      )
     );
 
-  if (page >= totalPages) {
+
+  if(page >= totalPages){
     page = 0;
   }
+
 
   const start =
     page * PER_PAGE;
 
+
   const current =
-    cruiseData.slice(
+    cruises.slice(
       start,
       start + PER_PAGE
     );
 
+
   container.innerHTML =
     current.map(item => {
 
-      const times =
-        splitTimes(item.status);
-
-      const portClass =
-        String(item.port)
-          .toLowerCase() === "sydney"
-          ? "sydney"
-          : "halifax";
-
       return `
-        <div class="row">
+      <div class="row">
 
-          <div>
-            ${item.date || "—"}
-          </div>
-
-          <div class="ship">
-            ${item.ship || "—"}
-          </div>
-
-          <div>
-            <span class="port ${portClass}">
-              ${item.port || "—"}
-            </span>
-          </div>
-
-          <div class="passengers">
-            ${item.passengers || "—"}
-          </div>
-
-          <div class="time">
-            ${times.arrival}
-          </div>
-
-          <div class="time">
-            ${times.departure}
-          </div>
-
+        <div class="date-cell">
+          ${item.date || "—"}
         </div>
+
+        <div class="ship">
+          ${item.ship || "—"}
+        </div>
+
+        <div class="passengers">
+          ${item.passengers || "—"}
+        </div>
+
+        <div class="time">
+          ${item.status || "—"}
+        </div>
+
+      </div>
       `;
 
     }).join("");
 
-  document.getElementById("page-info")
+
+  document
+    .getElementById("page")
     .textContent =
       `PAGE ${page + 1} / ${totalPages}`;
 }
 
 
-/* PAGE ROTATION */
 
-function startRotation() {
+/* ROTATION */
 
-  if (rotateTimer) {
-    clearInterval(rotateTimer);
+function startRotation(){
+
+  if(rotationTimer){
+    clearInterval(
+      rotationTimer
+    );
   }
 
-  rotateTimer =
-    setInterval(() => {
 
-      const totalPages =
-        Math.max(
-          1,
-          Math.ceil(
-            cruiseData.length / PER_PAGE
-          )
-        );
+  rotationTimer =
+    setInterval(
+      () => {
 
-      if (totalPages > 1) {
+        const totalPages =
+          Math.max(
+            1,
+            Math.ceil(
+              cruises.length /
+              PER_PAGE
+            )
+          );
 
-        page =
-          (page + 1) % totalPages;
 
-        render();
-      }
+        if(totalPages > 1){
 
-    }, ROTATE_MS);
+          page =
+            (page + 1) %
+            totalPages;
+
+          render();
+
+        }
+
+      },
+      ROTATE_MS
+    );
 }
 
 
-/* LOAD JSON */
 
-async function loadSchedule() {
+/* LOAD SCHEDULE */
 
-  const sync =
-    document.getElementById("sync");
+async function loadSchedule(){
 
-  try {
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  try{
 
     const response =
       await fetch(
         `${DATA_FILE}?v=${Date.now()}`,
         {
-          cache: "no-store"
+          cache:"no-store"
         }
       );
 
-    if (!response.ok) {
+
+    if(!response.ok){
+
       throw new Error(
         `HTTP ${response.status}`
       );
+
     }
+
 
     const data =
       await response.json();
 
-    if (!Array.isArray(data)) {
+
+    if(!Array.isArray(data)){
+
       throw new Error(
-        "Schedule is not an array"
+        "Invalid cruise schedule"
       );
+
     }
 
-    cruiseData =
-      data
-        .filter(item =>
+
+    /*
+      HALIFAX ONLY
+    */
+
+    cruises =
+      data.filter(
+        item =>
           item &&
           item.ship &&
           item.date &&
-          item.port
-        )
-        .sort(
-          (a, b) =>
-            dateNumber(a.date) -
-            dateNumber(b.date)
-        );
+          String(item.port)
+            .toLowerCase()
+            .includes("halifax")
+      );
+
 
     page = 0;
 
@@ -594,37 +580,47 @@ async function loadSchedule() {
 
     startRotation();
 
-    sync.textContent =
+
+    status.style.color =
+      "#62e6a7";
+
+
+    status.textContent =
       "Schedule Loaded • " +
-      new Date().toLocaleTimeString(
-        [],
-        {
-          hour: "2-digit",
-          minute: "2-digit"
-        }
-      );
+      new Date()
+        .toLocaleTimeString(
+          [],
+          {
+            hour:"2-digit",
+            minute:"2-digit"
+          }
+        );
 
-  }
 
-  catch (error) {
+  }catch(error){
 
     console.error(
-      "Cruise schedule error:",
       error
     );
 
-    sync.textContent =
+
+    status.style.color =
+      "#ff8585";
+
+
+    status.textContent =
       "Schedule Connection Error";
 
-    sync.style.color =
-      "#ff8585";
   }
+
 }
+
 
 
 /* START */
 
 loadSchedule();
+
 
 setInterval(
   loadSchedule,
