@@ -42,6 +42,7 @@ body{
   padding:2vh 3vw;
 }
 
+
 /* HEADER */
 
 header{
@@ -120,18 +121,25 @@ h1{
   overflow:hidden;
 }
 
+
+/*
+  PORTRAIT COLUMN WIDTHS
+  Extra space given to PORT TIME
+*/
+
 .board-head,
 .row{
   display:grid;
 
   grid-template-columns:
-    17%
-    36%
-    22%
-    25%;
+    16%
+    34%
+    19%
+    31%;
 
   align-items:center;
 }
+
 
 .board-head{
   flex-shrink:0;
@@ -142,7 +150,7 @@ h1{
 
   border-bottom:3px solid var(--blue);
 
-  font-size:clamp(14px,2.3vw,23px);
+  font-size:clamp(13px,2.1vw,22px);
   font-weight:900;
 
   text-transform:uppercase;
@@ -150,8 +158,9 @@ h1{
 
 .board-head div,
 .row div{
-  padding:0 1vw;
+  padding:0 .8vw;
 }
+
 
 .schedule{
   flex:1;
@@ -163,18 +172,21 @@ h1{
     repeat(10,minmax(0,1fr));
 }
 
+
 .row{
   min-height:0;
 
   border-bottom:1px solid var(--line);
 
-  font-size:clamp(17px,2.8vw,29px);
+  font-size:clamp(16px,2.6vw,28px);
   font-weight:700;
 }
+
 
 .row:nth-child(even){
   background:rgba(255,255,255,.025);
 }
+
 
 .ship{
   font-weight:900;
@@ -184,20 +196,30 @@ h1{
   text-overflow:ellipsis;
 }
 
+
 .passengers{
   text-align:center;
+  font-weight:800;
 }
+
 
 .time{
   font-family:monospace;
   font-weight:900;
 
   text-align:center;
+
+  white-space:nowrap;
+
+  font-size:clamp(15px,2.3vw,25px);
 }
+
 
 .date-cell{
   color:var(--gold);
   font-weight:900;
+
+  white-space:nowrap;
 }
 
 
@@ -244,9 +266,11 @@ footer{
   font-weight:700;
 }
 
+
 #page{
   color:var(--gold);
 }
+
 
 #status{
   color:#62e6a7;
@@ -374,7 +398,9 @@ function updateClock(){
       );
 }
 
+
 updateClock();
+
 
 setInterval(
   updateClock,
@@ -392,6 +418,7 @@ function render(){
       "schedule"
     );
 
+
   if(!cruises.length){
 
     container.innerHTML =
@@ -402,10 +429,12 @@ function render(){
       </div>
       `;
 
+
     document
       .getElementById("page")
       .textContent =
         "PAGE 1 / 1";
+
 
     return;
   }
@@ -469,6 +498,7 @@ function render(){
     .getElementById("page")
     .textContent =
       `PAGE ${page + 1} / ${totalPages}`;
+
 }
 
 
@@ -478,9 +508,11 @@ function render(){
 function startRotation(){
 
   if(rotationTimer){
+
     clearInterval(
       rotationTimer
     );
+
   }
 
 
@@ -511,6 +543,7 @@ function startRotation(){
       },
       ROTATE_MS
     );
+
 }
 
 
